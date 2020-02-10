@@ -186,26 +186,72 @@ $ball-down--size : 80vh;
     }
 }
 
+.ball-transition {
+    $factor:0.1;
+    height: $ball-down--size*$factor;
+    width: $ball-down--size*$factor;   
+    margin: -1*($ball-down--size*$factor)/2;
+    bottom: 50%;
+    right: 50%;
+    background-color: white;
+    animation-duration: 2s;
+    animation-iteration-count: 1;
+    z-index: 100;
+    display: none;
+}
+.start-transition {
+    animation-name: start-ball-transition-animation;
+    display: block;
+}
+.end-transition {
+    animation-name: end-ball-transition-animation;
+    display: block;
+}
+
 @keyframes ball-up-animation {
     0% {
-        transform: scale(1)
+        transform: scale(1);
     }
     50% {
-        transform: scale(0.9)
+        transform: scale(0.9);
     }
     100% {
-        transform: scale(1)
+        transform: scale(1);
     }
 }
 
 @keyframes ball-down-animation {
     0% {
-        transform: scale(1)
+        transform: scale(1);
     }
     50% {
-        transform: scale(0.85)
+        transform: scale(0.85);
     }
     100% {
-        transform: scale(1)
+        transform: scale(1);
+    }
+}
+
+@keyframes start-ball-transition-animation {
+    0% {
+        transform: scale(0);
+    }
+    50% {
+        transform: scale(1);
+    }
+    100% {
+        transform: scale(50);
+    }
+}
+
+@keyframes end-ball-transition-animation {
+    0% {
+        transform: scale(50);
+    }
+    50% {
+        transform: scale(1);
+    }
+    100% {
+        transform: scale(0);
     }
 }

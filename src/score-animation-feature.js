@@ -1,15 +1,22 @@
 /* Define variables */
-const mainPageScoreQuantity = document.querySelector('.main-page-score__quantity');
-const bestScore = 120; // fake number.
-const leftPointsToSlowDown = 12;
+const leftPointsToSlowDown = 10;
+let bestScore = -1; // fake number.
+let element = 0;
 let startTime = null;
 let diff = 0;
 let i = 0;
 
-/* Animate score from 0 to Best Score after page load */
-window.addEventListener("load", function(){
-  window.requestAnimationFrame(animateMainPageCounter);
-});
+/* Call animation counter*/
+export const animateMainPageCounter = (bestScoreInput) => {
+  bestScore = bestScoreInput;
+  element = 0;
+  startTime = null;
+  diff = 0;
+  i = 0;
+  element = document.querySelector('.main-page-score__quantity');
+  window.requestAnimationFrame(increaseMainPageCounter);
+  console.log('iaminscore');
+}
 
 /* Calculate linear slow down for animation counter */
 const calculateSlope = (animatedScoreValue) => {
@@ -35,6 +42,7 @@ const calculateSlope = (animatedScoreValue) => {
   const fastestPoint = 1; // ms
   let   increaseFrom = bestScore - leftPointsToSlowDown;
   const increaseTo = bestScore;
+  let kOut=0;
 
   /* Linear function y2 = a2*x +b2 parameters for gaining speed */
   const a = (fastestPoint - slowestPoint) / (increaseFrom - bestScore);
@@ -49,8 +57,9 @@ const calculateSlope = (animatedScoreValue) => {
 }
 
 /* Counter animation */
-const animateMainPageCounter = (currentTime) => {
+const increaseMainPageCounter = (currentTime) => {
 
+  let k = 0;
   /* For first cycle set startTime to timestamp passed through requestAnimationFrame
   Keep it until (***) */
   if (!startTime) startTime = currentTime;
@@ -121,9 +130,9 @@ const animateMainPageCounter = (currentTime) => {
     */
 
     // Update content.
-    mainPageScoreQuantity.textContent = i;
+    element.textContent = i;
   }
 
   // Refresh
-  window.requestAnimationFrame(animateMainPageCounter);
+  window.requestAnimationFrame(increaseMainPageCounter);
 }
