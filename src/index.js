@@ -1,6 +1,5 @@
 console.log('start index.js');
 
+import './main-page';
 import './styles/main.scss';
-import './full-screen-feature'; 
-import './score-animation-feature'; 
-import './ball';
+import './styles/manual-page.scss';
