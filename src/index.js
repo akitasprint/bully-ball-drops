@@ -1,5 +1,5 @@
-console.log('start index.js');
-
+/* Import main page */
 import './main-page';
-import './styles/main.scss';
-import './styles/manual-page.scss';
+
+/* Import styles */
+import './styles/combine.scss';

@@ -1,0 +1,17 @@
+/* Color variables */
+$yellow-base : #F2CB05;
+$yellow-highlight : #F2E205;
+$green-highlight : #DCF907;
+$purple-highlight : #bf1797;
+$blue-highlight : #1DF4F1;
+$deep-black : #000;
+$deep-white : #fff;
+
+/* Media variable */
+$information-mobile-landscape: "only screen and (orientation: landscape)";
+$information-tablet-portrait: "only screen and (min-width : 600px) and (orientation: portrait)";
+$information-tablet-landscape: "only screen and (min-width : 1024px) and (orientation: landscape)";
+
+/* Background animation ball sizes */
+$ball-up--size : 90vh;
+$ball-down--size : 80vh;

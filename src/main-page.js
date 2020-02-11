@@ -1,6 +1,7 @@
 import { animateMainPageCounter } from './score-animation-feature';
 import { toggleFullScreen } from './full-screen-feature';
 import { showManualScreen } from './manual-page';
+import { showGamePlayScreen } from './game-play-page';
 
 export const showMainPage = () => {
 
@@ -18,9 +19,10 @@ export const showMainPage = () => {
         /* Define variables */
         const fullScreenBtn = document.querySelector('.full-screen');
         const manualScreenBtn = document.querySelector('.info');
+        const gamePlayScreenBtn = document.querySelector('.play');
         const ballTransitionElement = document.querySelector('.ball-transition');
         
-        /* Animate score from 0 to Best Score after page load */
+        /* Animate score from 0 to Best Score after page load with 300ms delay */
         setTimeout(()=>{
             animateMainPageCounter(300)
         },500);
@@ -52,6 +54,24 @@ export const showMainPage = () => {
                 });
                 
             });
+
+            /* Click information button */
+            gamePlayScreenBtn.addEventListener('click', () => {
+
+                /* Start transition animation */
+                ballTransitionElement.classList.add('start-transition');
+
+                /* After animation */
+                ballTransitionElement.addEventListener('animationend', ()=>{
+                    /* Remove transition animation class */
+                    ballTransitionElement.classList.remove('start-transition');
+ 
+                    document.body.innerHTML = "";
+                    showGamePlayScreen();
+                });
+                
+            });
+
         });
     };
     xhr.send();

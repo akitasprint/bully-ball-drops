@@ -1,0 +1,30 @@
+@import './shared-variables.scss';
+
+/* Canvas */
+.game-play-canvas {
+    background: $yellow-base;
+    min-height: 100vh;
+}
+
+/* Header */
+header.game-play-header {
+    padding: 0;
+    display: block;
+
+    /* Time progress bar */
+    .time-bar{
+        background: $deep-black;
+        height: 1vh;
+        width: 88vw;
+        display: block;
+    }
+    /* Score value */
+    h1 {
+        margin: 0;
+        padding: 0.4rem;
+        font-size: 1rem;
+        font-weight: bold;
+        display: block;
+        text-align: right;
+    }
+}
