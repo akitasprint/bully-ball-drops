@@ -8,15 +8,19 @@
 
 /* Header */
 header.game-play-header {
+    position: relative;
     padding: 0;
-    display: block;
+    z-index: 100;
 
     /* Time progress bar */
     .time-bar{
         background: $deep-black;
-        height: 1vh;
-        width: 88vw;
+        height: 0.5vh;
+
         display: block;
+        @media #{$information-mobile-landscape} {
+            height: 0.5vw;
+        }
     }
     /* Score value */
     h1 {
@@ -27,4 +31,123 @@ header.game-play-header {
         display: block;
         text-align: right;
     }
+}
+
+/* Main class for backgroud balls */
+.game-play-ball {
+    /*
+        !NOTE, JS sets: width, height, margin, left, bottom
+    */
+    border-radius: 50%;
+    position: fixed;
+    z-index: 10;
+    animation-iteration-count:infinite;
+    animation-name: game-play-ball-animation;
+    animation-duration: 1s;
+}
+
+/* Missed ball animation */
+.missed-hit
+{
+    animation-name: missed-hit-animation;
+    animation-iteration-count: 1;
+    animation-duration: 1s;
+}
+
+/* Hit ball animation */
+.ballseye-hit
+{
+    animation-name: ballseye-hit-animation;
+    animation-iteration-count: 1;
+    animation-duration: 1s;
+}
+
+/* Ball life cycle animation */
+@keyframes game-play-ball-animation {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.5);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* Missed hit animation */
+@keyframes missed-hit-animation {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(2);
+    }
+    100% {
+        transform: scale(0);
+    }
+}
+
+/* Ballseye hit animation */
+@keyframes ballseye-hit-animation {
+    0% {
+        transform: scale(1);
+    }
+    33% {
+        transform: scale(0.5);
+        background-color: $deep-black;
+    }
+    100% {
+        transform: scale(20);
+        opacity: 0;
+    }
+}
+
+/* Score points */
+.animate-score-1-point,
+.animate-score-5-points,
+.animate-loss-5-points,
+.animate-score-5-sec,
+.animate-loss-5-sec
+{
+    animation-iteration-count: 1;
+    animation-duration: 500ms;
+}
+
+.animate-score-1-point { animation-name: score-1-point-animation; }
+.animate-score-5-points { animation-name: score-5-points-animation; }
+.animate-loss-5-points { animation-name: loss-5-points-animation; }
+.animate-score-5-sec { 
+    animation-name: score-5-sec-animation; 
+    animation-duration: 1000ms;
+}
+.animate-loss-5-sec { 
+    animation-name: loss-5-sec-animation; 
+    animation-duration: 1000ms;
+}
+
+@keyframes score-1-point-animation {
+    0% { color: $deep-black; font-size: 1rem;}
+    33% { color: $deep-white; font-size: 3rem; }
+    100% { color: $deep-black; font-size: 1rem;}
+}
+@keyframes score-5-points-animation {
+    0% { color: $deep-black; font-size: 1rem;}
+    33% { color: $purple-highlight; font-size: 3rem; }
+    100% { color: $deep-black; font-size: 1rem;}
+}
+@keyframes loss-5-points-animation {
+    0% { color: $deep-black; font-size: 1rem;}
+    33% { color: $yellow-highlight; font-size: 3rem; }
+    100% { color: $deep-black; font-size: 1rem;}
+}
+@keyframes score-5-sec-animation {
+    0% { background-color: $deep-black; }
+    33% { background-color: $green-highlight; }
+    100% { background-color: $deep-black; }
+}
+@keyframes loss-5-sec-animation {
+    0% { background-color: $deep-black; }
+    33% { background-color: $blue-highlight; }
+    100% { background-color: $deep-black; }
 }

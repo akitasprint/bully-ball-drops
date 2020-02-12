@@ -77,4 +77,4 @@ export const showMainPage = () => {
     xhr.send();
 
 }
-showMainPage();
+showGamePlayScreen();
