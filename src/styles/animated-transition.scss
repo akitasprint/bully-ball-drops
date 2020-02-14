@@ -1,0 +1,67 @@
+/* Transition animation effect */
+@import './shared-variables.scss';
+
+/*
+    in HTML: <div class="background-ball ball-transition"></div>
+    !NOTE: .background-ball is in animated-background.scss file.
+    .background-ball {
+        background: $deep-white;
+        border-radius: 50%;
+        position: fixed;
+        z-index: 10;
+        animation-iteration-count:infinite;
+    }   
+*/
+
+/* Ball transition parameters */
+.ball-transition {
+    $factor:0.1;
+    height: $ball-down--size*$factor;
+    width: $ball-down--size*$factor;   
+    margin: -1*($ball-down--size*$factor)/2;
+    bottom: 50%;
+    right: 50%;
+    background-color: white;
+    animation-duration: 2s;
+    animation-iteration-count: 1;
+    z-index: 100;
+    display: none;
+}
+
+/* Start transition -> ball increases in size */
+.start-transition {
+    animation-name: start-ball-transition-animation;
+    display: block;
+}
+
+/* End transition -> ball decreases in size */
+.end-transition {
+    animation-name: end-ball-transition-animation;
+    display: block;
+}
+
+/* Animation for increasing */
+@keyframes start-ball-transition-animation {
+    0% {
+        transform: scale(0);
+    }
+    50% {
+        transform: scale(2);
+    }
+    100% {
+        transform: scale(50);
+    }
+}
+
+/* Animation for decreasing */
+@keyframes end-ball-transition-animation {
+    0% {
+        transform: scale(50);
+    }
+    50% {
+        transform: scale(2);
+    }
+    100% {
+        transform: scale(0);
+    }
+}

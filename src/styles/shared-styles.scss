@@ -1,0 +1,19 @@
+@import './shared-variables.scss';
+
+/* All elements */
+* {
+    box-sizing: border-box;
+}
+
+/* Html, Body */
+html, body {
+    height: 100%;
+    padding: 0px;
+    margin: 0px;
+}
+
+/* Body */
+body {
+    color: $deep-black;
+    font: 1rem Tahoma, sans-serif;
+}

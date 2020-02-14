@@ -1,17 +1,7 @@
-$yellow-base : #F2CB05;
-$yellow-highlight : #F2E205;
-$green-highlight : #DCF907;
-$purple-highlight : #bf1797;
-$blue-highlight : #1DF4F1;
-$deep-black : #000;
-$deep-white : #fff;
+@import './shared-variables.scss';
 
-/* Media variable */
-$information-mobile-landscape: "only screen and (orientation: landscape)";
-$information-tablet-portrait: "only screen and (min-width : 600px) and (orientation: portrait)";
-$information-tablet-landscape: "only screen and (min-width : 1024px) and (orientation: landscape)";
-
-.canvas {
+/* Canvas */
+.manual-page-canvas {
     background: $yellow-base;
     min-height: 100vh;
     padding: 2rem;
@@ -22,7 +12,22 @@ $information-tablet-landscape: "only screen and (min-width : 1024px) and (orient
                         "nav";
     grid-template-rows: auto 1fr auto;
 }
-article {
+
+/* Header */
+.manual-page-header {
+    grid-area: header;
+    display: flex;
+    padding-top: 1rem;
+    z-index: 100;    
+    justify-content: flex-start;
+    
+    @media #{$information-mobile-landscape} {
+        padding-top: 0rem;
+    }
+}
+
+/* Balls with text */
+.manual-page-balls {
 
     margin: auto;
     grid-area: article;
@@ -50,8 +55,8 @@ article {
     }      
 }
 
-.manual-screen-description
-{
+/* Description */
+.manual-page-description {
     margin-left: 1.5rem;
     p {
         font-size: 1rem;
@@ -60,10 +65,7 @@ article {
     }
 }
 
-header.manual-screen-header {
-    justify-content: flex-start;
-}
-
+/* Balls parameters */
 .manual-ball {
     margin: 1.2rem;
     width: 20vw;
@@ -100,55 +102,53 @@ header.manual-screen-header {
     }             
 }
 
-.loss-5-points {
-    background: $yellow-highlight;
-    grid-area: b1;
-    animation-delay: -200ms;
-}
+.manual-page-balls {
 
-.score-5-points {
-    background: $purple-highlight;
-    grid-area: b2;
-    animation-delay: -300ms;
-    span { color: $deep-white; }
-}
+    .loss-5-points {
+        grid-area: b1;
+        animation-delay: -200ms;
+    }
 
-.score-1-point {
-    background: $deep-white;
-    grid-area: b5;
-    animation-delay: -250ms;
-}
+    .score-5-points {
+        grid-area: b2;
+        animation-delay: -300ms;
+        span { color: $deep-white; }
+    }
 
-.loss-5-sec {
-    background: $blue-highlight;
-    grid-area: b4;
-    animation-delay: -150ms;
-}
+    .score-1-point {
+        grid-area: b5;
+        animation-delay: -250ms;
+    }
 
-.score-5-sec {
-    background: $green-highlight;
-    grid-area: b3;
-    animation-delay: -100ms;
-}
+    .loss-5-sec {
+        grid-area: b4;
+        animation-delay: -150ms;
+    }
 
-.game-over {
-    background: $deep-black;
-    grid-area: b6;
-    animation-delay: -50ms;
-    span { 
-        color: $deep-white; 
-        @media #{$information-mobile-landscape} {
-            font-size: 0.8rem;
+    .score-5-sec {
+        grid-area: b3;
+        animation-delay: -100ms;
+    }
+
+    .game-over {
+        grid-area: b6;
+        animation-delay: -50ms;
+        span { 
+            color: $deep-white; 
+            @media #{$information-mobile-landscape} {
+                font-size: 0.8rem;
+            }
+            @media #{$information-tablet-portrait} {
+                font-size: 1.2rem; 
+            }   
+            @media #{$information-tablet-landscape} {
+                font-size: 1.2rem;
+            }  
         }
-        @media #{$information-tablet-portrait} {
-            font-size: 1.2rem; 
-        }   
-        @media #{$information-tablet-landscape} {
-            font-size: 1.2rem;
-        }  
     }
 }
 
+/* Manual ball pumping animation */
 @keyframes manual-ball-animation {
     0% {
         transform: scale(1);
