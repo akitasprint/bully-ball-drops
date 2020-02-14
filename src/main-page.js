@@ -17,15 +17,54 @@ export const showMainPage = () => {
         document.body.innerHTML= this.responseText;
 
         /* Define variables */
-        const fullScreenBtn = document.querySelector('.full-screen');
-        const manualScreenBtn = document.querySelector('.info');
-        const gamePlayScreenBtn = document.querySelector('.play');
-        const ballTransitionElement = document.querySelector('.ball-transition');
-        
-        /* Animate score from 0 to Best Score after page load with 300ms delay */
+        const 
+                fullScreenBtn = document.querySelector('.full-screen'),
+                manualScreenBtn = document.querySelector('.info'),
+                gamePlayScreenBtn = document.querySelector('.play'),
+                ballTransitionElement = document.querySelector('.ball-transition'),
+                scoreTitle = document.querySelector('.main-page-score > h1'),
+                medalIcon = document.querySelector('.medal-icon');
+
+        let animateFirst, lastScore, bestScore, state;
+
+        /* Check local storage last score and best score */
+        if(!localStorage.getItem('bestScore')) {
+            // Best score does not exist in local storage
+            bestScore = 0;
+            localStorage.bestScore = bestScore;
+            state = 'first-time-here';
+            scoreTitle.textContent = 'Best score:';
+            animateFirst = bestScore;
+
+        } else {
+            // Best score exists in local storage
+            bestScore = localStorage.bestScore;
+            state = 'was-here-before';
+            scoreTitle.textContent = 'Best score:';
+            animateFirst = bestScore;
+
+            if(localStorage.getItem('lastScore')) {
+                // Last score exists in local storage. End of play.
+                lastScore = localStorage.lastScore;
+                medalIcon.style.visibility = 'hidden';
+                scoreTitle.textContent = 'Your score:';
+                animateFirst = lastScore;
+                
+                if (lastScore>bestScore) {
+                    localStorage.bestScore = lastScore;
+                    state = 'new-best-score';
+                } else {
+                    state = 'keep-best-score';
+                }
+
+                localStorage.removeItem('lastScore');
+            }
+        }
+
+        /* Animate score from 0 to Best Score after page load with n ms delay */
         setTimeout(()=>{
-            animateMainPageCounter(300)
-        },500);
+            animateMainPageCounter(animateFirst, state);
+        },500);     
 
         /* Start transition animation */
         ballTransitionElement.classList.add('end-transition');
@@ -77,4 +116,4 @@ export const showMainPage = () => {
     xhr.send();
 
 }
-showGamePlayScreen();
+showMainPage();

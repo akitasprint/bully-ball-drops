@@ -53,3 +53,20 @@
         }
     }
 }
+
+.glory-text {
+    color: $purple-highlight;
+}
+.glory-icon {
+    fill: $purple-highlight;
+}
+.fade-in {
+    visibility: visible;
+    opacity: 1;
+    transition: opacity 2s linear;
+}
+.fade-out {
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0s 2s, opacity 2s linear;
+}

@@ -15,11 +15,12 @@ header.game-play-header {
     /* Time progress bar */
     .time-bar{
         background: $deep-black;
-        height: 0.5vh;
+        height: 1vh;
 
         display: block;
+        float: right;
         @media #{$information-mobile-landscape} {
-            height: 0.5vw;
+            height: 1vw;
         }
     }
     /* Score value */
@@ -51,15 +52,25 @@ header.game-play-header {
 {
     animation-name: missed-hit-animation;
     animation-iteration-count: 1;
-    animation-duration: 1s;
+    animation-duration: 500ms;
 }
 
 /* Hit ball animation */
 .ballseye-hit
 {
+    //display: none;
     animation-name: ballseye-hit-animation;
     animation-iteration-count: 1;
-    animation-duration: 1s;
+    animation-duration: 300ms;
+}
+
+/* Hit ball animation */
+.game-over-hit
+{
+    animation-name: game-over-hit-animation;
+    animation-iteration-count: 1;
+    animation-duration: 3000ms;
+    z-index: 90;
 }
 
 /* Ball life cycle animation */
@@ -80,9 +91,6 @@ header.game-play-header {
     0% {
         transform: scale(1);
     }
-    50% {
-        transform: scale(2);
-    }
     100% {
         transform: scale(0);
     }
@@ -93,13 +101,19 @@ header.game-play-header {
     0% {
         transform: scale(1);
     }
-    33% {
-        transform: scale(0.5);
-        background-color: $deep-black;
+
+    100% {
+        transform: scale(5);
+        opacity: 0;
+    }
+}
+
+@keyframes game-over-hit-animation {
+    0% {
+        transform: scale(1);
     }
     100% {
-        transform: scale(20);
-        opacity: 0;
+        transform: scale(100);
     }
 }
 

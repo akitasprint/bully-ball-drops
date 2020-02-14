@@ -5,17 +5,19 @@ let element = 0;
 let startTime = null;
 let diff = 0;
 let i = 0;
-
+let reqID = undefined;
+let state = undefined;
+let gugu = true;
 /* Call animation counter*/
-export const animateMainPageCounter = (bestScoreInput) => {
+export const animateMainPageCounter = (bestScoreInput, inState) => {
   bestScore = bestScoreInput;
+  state = inState;
   element = 0;
   startTime = null;
   diff = 0;
   i = 0;
   element = document.querySelector('.main-page-score__quantity');
-  window.requestAnimationFrame(increaseMainPageCounter);
-  console.log('iaminscore');
+  reqID = window.requestAnimationFrame(increaseMainPageCounter);
 }
 
 /* Calculate linear slow down for animation counter */
@@ -134,5 +136,59 @@ const increaseMainPageCounter = (currentTime) => {
   }
 
   // Refresh
-  window.requestAnimationFrame(increaseMainPageCounter);
+  reqID = window.requestAnimationFrame(increaseMainPageCounter);
+
+  if( i >= bestScore ) {
+
+    reqID = window.cancelAnimationFrame(reqID);
+    if (state == 'new-best-score' || state == 'keep-best-score' )
+    {
+      const scoreTitle = document.querySelector('.main-page-score > h1');
+      const medalIconDiv = document.querySelector('.medal-icon');
+      const medalIcon = document.querySelectorAll('.medal-icon path');
+
+      element.classList.add('fade-out');
+      scoreTitle.classList.add('fade-out');
+      medalIcon.forEach( item => {
+        item.classList.add('fade-out');
+      });    
+
+      element.addEventListener('transitionend', ()=>{
+
+        medalIconDiv.style.visibility = 'visible';
+        element.classList.remove('fade-out');
+        scoreTitle.classList.remove('fade-out');
+        medalIcon.forEach( item => {
+          item.classList.remove('fade-out');
+        });
+
+        if(state == 'new-best-score') {
+
+          scoreTitle.textContent = 'New best score:';
+          element.classList.add('fade-in');
+          scoreTitle.classList.add('fade-in');
+          medalIcon.forEach( item => {
+            item.classList.add('fade-in');
+          });
+          element.classList.add('glory-text');
+          scoreTitle.classList.add('glory-text');
+          medalIcon.forEach( item => {
+            item.classList.add('glory-icon');
+          });
+        }
+        if(state == 'keep-best-score') {
+
+          scoreTitle.textContent = 'Best score:';
+          element.classList.add('fade-in');
+          medalIcon.forEach( item => {
+            item.classList.add('fade-in');
+          });
+          scoreTitle.classList.add('fade-in');
+
+          animateMainPageCounter(localStorage.bestScore, 'stop');
+        }
+      });
+    }
+
+  }
 }
