@@ -31,27 +31,27 @@ export const showMainPage = () => {
         if(!localStorage.getItem('bestScore')) {
             // Best score does not exist in local storage
             bestScore = 0;
-            localStorage.bestScore = bestScore;
+            localStorage.setItem('bestScore', bestScore);
             state = 'first-time-here';
             scoreTitle.textContent = 'Best score:';
             animateFirst = bestScore;
 
         } else {
             // Best score exists in local storage
-            bestScore = localStorage.bestScore;
+            bestScore = localStorage.getItem('bestScore');
             state = 'was-here-before';
             scoreTitle.textContent = 'Best score:';
             animateFirst = bestScore;
 
             if(localStorage.getItem('lastScore')) {
                 // Last score exists in local storage. End of play.
-                lastScore = localStorage.lastScore;
+                lastScore = localStorage.getItem('lastScore');
                 medalIcon.style.visibility = 'hidden';
                 scoreTitle.textContent = 'Your score:';
                 animateFirst = lastScore;
                 
                 if (lastScore>bestScore) {
-                    localStorage.bestScore = lastScore;
+                    localStorage.setItem('bestScore', lastScore);
                     state = 'new-best-score';
                 } else {
                     state = 'keep-best-score';

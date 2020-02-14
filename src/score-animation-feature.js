@@ -137,7 +137,8 @@ const increaseMainPageCounter = (currentTime) => {
 
   // Refresh
   reqID = window.requestAnimationFrame(increaseMainPageCounter);
-
+ 
+  // TODO: add some comments and clean the mess.
   if( i >= bestScore ) {
 
     reqID = window.cancelAnimationFrame(reqID);
@@ -185,7 +186,7 @@ const increaseMainPageCounter = (currentTime) => {
           });
           scoreTitle.classList.add('fade-in');
 
-          animateMainPageCounter(localStorage.bestScore, 'stop');
+          animateMainPageCounter(localStorage.getItem('bestScore'), 'stop');
         }
       });
     }
