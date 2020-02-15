@@ -24,14 +24,20 @@ header.game-play-header {
         }
     }
     /* Score value */
-    h1 {
-        margin: 0;
-        padding: 0.4rem;
-        font-size: 1rem;
-        font-weight: bold;
+    .game-play-score
+    {
         display: block;
-        text-align: right;
+        clear: both;
+        h1 {
+            margin: 0;
+            padding: 0.4rem;
+            font-size: 1rem;
+            font-weight: bold;
+            //display: block;
+            text-align: right;
+        }
     }
+
 }
 
 /* Main class for backgroud balls */
