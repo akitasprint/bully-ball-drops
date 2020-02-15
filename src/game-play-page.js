@@ -346,14 +346,20 @@ const hitEvent = e => {
                 if (eClass.includes('loss-5-sec') || eClass.includes('score-5-sec') ) {
                     updateTime(ball.timeToGet);
                     ball.ballsEyeHit();
+                    if(eClass.includes('loss-5-sec')) window.navigator.vibrate(300);
+                    else window.navigator.vibrate([50,10,50,10,50]);
                 }
                 else if (eClass.includes('loss-5-points') || eClass.includes('score-5-points') ) {
                     updateScore(ball.scoreToGet);
                     ball.ballsEyeHit();
+                    window.navigator.vibrate([100,30,100]);
+                    if(eClass.includes('loss-5-points')) window.navigator.vibrate(300);
+                    else window.navigator.vibrate([50,10,50,10,50]);
                 }
                 else if ( eClass.includes('score-1-point') ) {
                     updateScore(ball.scoreToGet);
                     ball.ballsEyeHit();
+                    window.navigator.vibrate(70);
                 }
                 else if (eClass.includes('game-over')) {
                     ball.gameOverHit();
@@ -384,7 +390,7 @@ const endOfGame = () => {
 
     /* Remember the score */
     localStorage.setItem('lastScore', Game.points);
-    
+
     /* Start transition animation */
     ballTransitionElement.classList.add('start-transition');
 
