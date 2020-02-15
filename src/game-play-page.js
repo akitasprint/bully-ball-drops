@@ -96,7 +96,7 @@ class BasicBall {
     */
     generateRandomDiameter(){
         let min = getScreenWidth()/10;
-        if (!isPortraitOrientation) min = getScreenHeight()/10;
+        if (!isPortraitOrientation()) min = getScreenHeight()/10;
         return Math.floor(Math.random() * min + min );
     }
 }
@@ -389,10 +389,12 @@ const endOfGame = () => {
     removeEventListeners();
 
     /* Remember the score */
+    if(Game.points<0) Game.points = 0;
     localStorage.setItem('lastScore', Game.points);
 
     /* Start transition animation */
     ballTransitionElement.classList.add('start-transition');
+    ballTransitionElement.style.display = 'block';
 
     /* After animation */
     ballTransitionElement.addEventListener('animationend', ()=>{
@@ -511,6 +513,7 @@ const startTheGame = () => {
     
     /* Remove transition animation class */
     ballTransitionElement.classList.remove('end-transition');
+    ballTransitionElement.style.display = 'none';
 
     /* Set event listeners */
     setEventListeners();

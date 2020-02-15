@@ -15,17 +15,21 @@
 
 /* Ball transition parameters */
 .ball-transition {
-    $factor:0.1;
-    height: $ball-down--size*$factor;
-    width: $ball-down--size*$factor;   
-    margin: -1*($ball-down--size*$factor)/2;
+    $factor:2;
+    height: 100vh*$factor;
+    width: 100vh*$factor;   
+    margin: -1*(100vh*$factor)/2;
+    @media #{$information-mobile-landscape} {
+        height: 100vw*$factor;
+        width: 100vw*$factor;   
+        margin: -1*(100vw*$factor)/2;
+    }
     bottom: 50%;
     right: 50%;
     background-color: white;
-    animation-duration: 2s;
+    animation-duration: 1.5s;
     animation-iteration-count: 1;
-    z-index: 100;
-    display: none;
+    z-index: 1000;
 }
 
 /* Start transition -> ball increases in size */
@@ -46,20 +50,20 @@
         transform: scale(0);
     }
     50% {
-        transform: scale(2);
+        transform: scale(0.05);
     }
     100% {
-        transform: scale(50);
+        transform: scale(1);
     }
 }
 
 /* Animation for decreasing */
 @keyframes end-ball-transition-animation {
     0% {
-        transform: scale(50);
+        transform: scale(1);
     }
     50% {
-        transform: scale(2);
+        transform: scale(0.05);
     }
     100% {
         transform: scale(0);

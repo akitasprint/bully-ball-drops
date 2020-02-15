@@ -24,12 +24,14 @@ export const showManualScreen = () => {
         ballTransitionElement.addEventListener('animationend', () => {
             /* Remove transition animation class */
             ballTransitionElement.classList.remove('end-transition');
+            ballTransitionElement.style.display = 'none';
 
             /* Click go-back button */
             goBackBtn.addEventListener('click', () => {
-
+                window.navigator.vibrate(30);
                 /* Start transition animation */
                 ballTransitionElement.classList.add('start-transition');
+                ballTransitionElement.style.display = 'block';
 
                 /* After animation */
                 ballTransitionElement.addEventListener('animationend', ()=>{

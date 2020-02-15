@@ -9,9 +9,9 @@ let reqID = undefined;
 let state = undefined;
 let gugu = true;
 /* Call animation counter*/
-export const animateMainPageCounter = (bestScoreInput, inState) => {
-  bestScore = bestScoreInput;
-  state = inState;
+export const animateMainPageCounter = (obj) => {
+  bestScore = obj.score;
+  state = obj.state;
   element = 0;
   startTime = null;
   diff = 0;
@@ -80,7 +80,10 @@ const increaseMainPageCounter = (currentTime) => {
     startTime = null;
 
     /* For first 30 points increment i++ */
-    if ( i < 30 ) i++
+    if ( i < 30 ) {
+      i++;
+      window.navigator.vibrate(10);
+    }
 
     /* After 30 points */
     else {
@@ -93,9 +96,13 @@ const increaseMainPageCounter = (currentTime) => {
         /* (2) */
         if (( i + y ) > ( bestScore - leftPointsToSlowDown )) i = bestScore - leftPointsToSlowDown;
         else i = i + y;
+        window.navigator.vibrate(5);
       }
       /* (3) */
-      else if (i >= bestScore - leftPointsToSlowDown ) i = i + 1;
+      else if (i >= bestScore - leftPointsToSlowDown ) {
+        i = i + 1;
+        window.navigator.vibrate(50);
+      }
     }
     /*
     (1)
@@ -142,8 +149,8 @@ const increaseMainPageCounter = (currentTime) => {
   if( i >= bestScore ) {
 
     reqID = window.cancelAnimationFrame(reqID);
-    if (state == 'new-best-score' || state == 'keep-best-score' )
-    {
+    if (state == 'new-best-score' || state == 'keep-best-score' ){
+      
       const scoreTitle = document.querySelector('.main-page-score > h1');
       const medalIconDiv = document.querySelector('.medal-icon');
       const medalIcon = document.querySelectorAll('.medal-icon path');
@@ -186,7 +193,7 @@ const increaseMainPageCounter = (currentTime) => {
           });
           scoreTitle.classList.add('fade-in');
 
-          animateMainPageCounter(localStorage.getItem('bestScore'), 'stop');
+          animateMainPageCounter({score:localStorage.getItem('bestScore'), state:'stop'});
         }
       });
     }
