@@ -1,0 +1,45 @@
+/* Navigation */
+@import './shared-variables.scss';
+
+nav {
+    grid-area: nav;
+    z-index: 100;
+    padding-bottom: 1rem;
+
+    @media #{$information-mobile-landscape} {
+        padding-bottom: 0rem;
+        width: 60%;
+        margin: 0 auto;
+    } 
+    @media #{$information-tablet-landscape} {
+        width: 60%;
+        margin: 0 auto;
+    }   
+    @media #{$information-tablet-portrait} {
+        width: 60%;
+        margin: 0 auto;
+    }       
+
+    ul {
+        list-style: none;
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: space-around;
+        padding: 0;
+        margin: 0;
+
+        li {
+            a {
+                width: 4rem;
+                display: block;
+                padding: 1rem;
+                svg {
+                    fill: $deep-black;
+                    path {
+                        fill: $deep-black;
+                    }
+                }
+            }
+        }
+    }
+}

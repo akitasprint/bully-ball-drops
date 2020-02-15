@@ -1,0 +1,72 @@
+@import './shared-variables.scss';
+
+/* Canvas */
+.main-page-canvas {
+    background: $yellow-base;
+    min-height: 100vh;
+    padding: 2rem;
+    display: grid;
+    grid-template-areas: 
+                        "header"
+                        "."
+                        "nav";
+    grid-template-rows: auto 1fr auto;
+}
+
+/* Header */
+.main-page-header {
+    grid-area: header;
+    display: flex;
+    justify-content: flex-end;
+    padding-top: 1rem;
+    z-index: 100;
+        
+    @media #{$information-mobile-landscape} {
+        padding-top: 0rem;
+    }
+
+    .medal-icon {
+        $medal-size: 4rem;
+        width: $medal-size;
+        margin-right: 1.5rem;
+    }
+
+    .main-page-score {
+        text-align: right;
+        margin-top: -0.4rem;
+
+        /* Title (1) and Score (2)*/
+        h1, h2 {
+            font-weight: normal;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* (1) Title 'Best score:' */
+        h1 {
+            font-size: 1.5rem;
+        }
+
+        /* (2) Score value */
+        h2 {
+            font-size: 3rem;
+        }
+    }
+}
+
+.glory-text {
+    color: $purple-highlight;
+}
+.glory-icon {
+    fill: $purple-highlight;
+}
+.fade-in {
+    visibility: visible;
+    opacity: 1;
+    transition: opacity 2s linear;
+}
+.fade-out {
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0s 2s, opacity 2s linear;
+}

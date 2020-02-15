@@ -1,0 +1,26 @@
+/* Balls parameters */
+@import './shared-variables.scss';
+
+.loss-5-points {
+    background: $yellow-highlight;
+}
+
+.score-5-points {
+    background: $purple-highlight;
+}
+
+.score-1-point {
+    background: $deep-white;
+}
+
+.loss-5-sec {
+    background: $blue-highlight;
+}
+
+.score-5-sec {
+    background: $green-highlight;
+}
+
+.game-over {
+    background: $deep-black;
+}

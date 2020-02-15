@@ -1,4 +1,5 @@
-console.log('start index.js');
+/* Import main page */
+import './main-page';
 
-import './styles/main.scss';
-import './ball.js';
+/* Import styles */
+import './styles/combine.scss';
