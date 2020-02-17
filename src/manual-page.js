@@ -27,7 +27,7 @@ export const showManualScreen = () => {
             ballTransitionElement.style.display = 'none';
 
             /* Click go-back button */
-            goBackBtn.addEventListener('click', () => {
+            goBackBtn.addEventListener('touchstart', () => {
                 window.navigator.vibrate(30);
                 /* Start transition animation */
                 ballTransitionElement.classList.add('start-transition');

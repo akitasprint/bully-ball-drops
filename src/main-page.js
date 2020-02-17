@@ -52,10 +52,10 @@ function afterMainTransitionAnimation() {
     this.removeEventListener('animationend', afterMainTransitionAnimation);
     
     /* Toggle full screen on click event */
-    fullScreenBtn.addEventListener('click', toggleFullScreen);
+    fullScreenBtn.addEventListener('touchstart', toggleFullScreen);
 
     /* Click information button */
-    manualScreenBtn.addEventListener('click', () => {
+    manualScreenBtn.addEventListener('touchstart', () => {
         window.navigator.vibrate(30);
         /* Start transition animation */
         ballTransitionElement.classList.add('start-transition');
@@ -66,7 +66,7 @@ function afterMainTransitionAnimation() {
     });
 
     /* Click information button */
-    gamePlayScreenBtn.addEventListener('click', () => {
+    gamePlayScreenBtn.addEventListener('touchstart', () => {
         window.navigator.vibrate(30);
         /* Start transition animation */
         ballTransitionElement.classList.add('start-transition');
